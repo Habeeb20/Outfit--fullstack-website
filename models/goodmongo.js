@@ -8,7 +8,13 @@ const goodsSchema = mongoose.Schema({
     kinds:{
         type:String,
         required:true,
+    },
+
+    color:{
+        type:String,
+        required:true
     }
+   
 });
 
 module.exports = mongoose.model("Goods", goodsSchema);

@@ -1,4 +1,4 @@
-const isLoggedin = (async(req, res, next) => {
+const isLoggedin = (async(req, res) => {
 
     try {
         let user_id;
@@ -7,9 +7,10 @@ const isLoggedin = (async(req, res, next) => {
             res.redirect('/login')
 
            } else {
+            res.render("availablegoods")
 
            }
-        next();
+        
         
     } catch (error) {
         console.log(error)

@@ -1,6 +1,7 @@
 const Good = require("../models/goodmongo");
 const Client = require("../models/mongodb");
-const Admin = require("../models/adminmongo")
+const Admin = require("../models/adminmongo");
+const { findById } = require("../models/mongodb");
 
 const securePassword =(async(password) => {
     try {
@@ -15,84 +16,17 @@ const securePassword =(async(password) => {
 
 });
 
-
-const login= (async(req, res) => {
-    res.send("hi")
-});
-
-const goodSetUp = (async(req, res) => {
-    try{
-        var good = await Good.find({});
-        if (good.length > 0) {
-            
-        } else {
-            res.render('landingPage')
-            
-        }
-
-    }catch(err){
-        console.log(err)
-    }
-});
-
-
-
-const goodsSetUpSave = (async(req, res) => {
+const profile =(async(req, res) => {
     try {
-        const title = req.body.title;
-        const kinds = req.body.kinds;
-        const email = req.body.email;
-        const password = await securePassword(req.body.password);
-        
-        const good = new Good({
-            title:title,
-            kinds:kinds,
-
-        });
-
-        await Good.save();
-
-        const client = new Client({
-            
-            email:email,
-            password:password,
-            
-        });
-
-        const clientData = await client.save()
-        if (clientData){
-            res.render('/avaliablegoods')
-        }else {
-            req.render ('login', {message:'not properly set up'})
-        }
-        
-        
-    } catch (error) {
-        console.log(error)
-        
-    }
-
-
-});
-
-const dashboard =(async(req, res) => {
-    try {
-        const allpost = await Admin.find({})
-        req.render("admin/dashboard", {posts:allpost})
-    } catch (error) {
-        console.log(error)
-        
-    }
-});
-
-const loadPostDashboard = (async(req, res) => {
-    try {
-        res.render('admin/postdashboard');
+        res.render('profile')
     } catch (error) {
         console.log(error)
         
     }
 })
+
+
+
 
 const AddPost  = (async(req, res) => {
     try{
@@ -111,35 +45,62 @@ const AddPost  = (async(req, res) => {
 });
 const deletePost = (async(req, res) => {
     try {
-        await Admin.deleteOne({_id:req.params.id})
+        await Good.deleteOne({_id:req.params.id})
     } catch (error) {
         console.log(error)
         
     }
 });
 
-
-const updatePost = async(req, res) => {
+const geteditpost = (async(req,res) => {
     try {
-       const editData= await Admin.findByIdAndUpdate({_id:req.params.id}, {
-            $set: {
-                title:req.body.title,
-                content:req.body.content,
-            }
-        })
+        const admindata = await Good.findById({_id:req.params.id});
+        if (admindata) {
+            res.render('editpost',{admin:admindata});
+            
+        } else {
+            console.log("not properly set")
+            
+        }
+        
+        
     } catch (error) {
         console.log(error)
         
     }
-}
+})
+
+
+const loadedit =(async(req, res)=> {
+    try {
+        const editdetails = await Good.findByIdAndUpdate({_id:req.params.id}, {
+            $set:{
+                color:req.body.color,
+            }
+        });
+
+        if (editdetails) {
+            console.log("successful")
+            
+        } else {
+            console.log('error')
+            
+        }
+    } catch (error) {
+        console.log(error)
+        
+    }
+})
+
+
+
 module.exports= {
-    goodSetUp,
-    goodsSetUpSave,
-    login,
+ 
+    profile,
     securePassword,
-    dashboard,
-    loadPostDashboard,
+    geteditpost,
+    loadedit,
     AddPost,
     deletePost,
-    updatePost
+    
 }

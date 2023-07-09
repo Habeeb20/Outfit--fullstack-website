@@ -28,6 +28,21 @@ client_route.use(express.static('public'))
 
 
 client_route.get('/login',authentication.isloggedout, clientController.loadlogin);
-client_route.post('/login',clientController.verifyLogin)
-client_route.get('/goodselection', authentication.isLoggedin, clientController.goodselection)
+client_route.post('/login',clientController.verifyLogin);
+client_route.get('/profile', clientController.profile);
+client_route.get('/goodDetails', clientController.goodDetails);
+client_route.post('/goodDetails', clientController.details)
+client_route.get('/goodselection', authentication.isLoggedin, clientController.goodselection);
+client_route.get('/', clientController.availablegoods);
+client_route.get('/signup', authentication.isloggedout, clientController.signup);
+client_route.post('/signup', clientController.verifyLogin);
+client_route.get('/forgetpassword', authentication.isloggedout,clientController.forgetpass);
+client_route.post('/forgetpassword', clientController.forgetPasswordVerification);
+client_route.get('/resetpassword', authentication.isloggedout, clientController.Loadresetpassword) 
+client_route.post('/resetpassword', clientController.resetPassword)
+
+
+
+
+
 module.exports= client_route;

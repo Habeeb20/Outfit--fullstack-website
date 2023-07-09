@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer')
-const randomstring = require('randomstring');
+const rand = require('randomstring');
 const config = require('../config/config');
 const Client = require('../models/mongodb');
+const Goods = require('../models/goodmongo');
+const logger = require('./logger')
 
 
 
@@ -30,6 +32,72 @@ const loadlogin = (async(req, res)=>{
         
     }
 });
+
+const signup = (async(req, res)=>{
+    try {
+        res.render('signup')
+    } catch (error) {
+        console.log(error)
+        
+    }
+});
+
+const profile = (async(req, res) => {
+    try {
+        res.render('profile', {})
+    } catch (error) {
+        console.log(error)
+        
+    }
+});
+
+const goodDetails =(async(req, res)=> {
+    try {
+        res.render('goodDetails')
+    } catch (error) {
+        console.log(error)
+        
+    }
+});
+
+const details = (async(req, res)=> {
+    try {
+        const title = req.body.title;
+        const kinds = req.body.kinds;
+        const color = req.body.color;
+
+        const detailsgood = new Goods({
+            title:title,
+            kinds:kinds,
+            color:color
+        });
+
+        const detaildata = await detailsgood.save();
+        if (detaildata) {
+            res.render('profile', {
+                title:req.body.title,
+                kinds:req.body.kinds,
+                color:req.body.color,
+
+                detaildata : detaildata,
+                title:title,
+                kinds:kinds,
+                color:color,
+                message:"goods added to cart successfully",
+             
+            })
+            
+        } else {
+            
+        }
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+
+})
+
 
 
 const sendResetPasswordMail = async(name, email, token) => {
@@ -89,20 +157,24 @@ const verifyLogin = (async(req, res) =>{
 
 
                 if(clientData.is_admin = 1){
-                    res.redirect('/goodselection')
+                    res.render('goodselection', {
+                        email:req.body.email,
+                        email:email
+                    })
                 }else {
                     res.redirect('/login', {message: "login details does not match,create an account instead"})
                 }
                 
             } else {
+                res.redirect("/login")
                 console.log("incorrect password")
-                res.redirect("/login", {message:"your password does not match"})
+             
                 
             }
             
         } else {
-            console.log("err")
-            res.redirect('/login')
+            // console.log("err")
+            // res.redirect('/login')
             if (!clientData) {
                 const email = req.body.email;
                 const  password = await securePassword (req.body.password);
@@ -116,7 +188,7 @@ const verifyLogin = (async(req, res) =>{
         
                 const clientDat = await newclient.save()
                 if(clientDat){
-                    res.render('goodselection')
+                    res.render('goodselection',{email:email})
                 }
                 
             } else {
@@ -179,53 +251,72 @@ const logout = (async(req, res)=> {
     }
 });
 
-const goodselection = async(req, res) => {
+const forgetpass = (async(req, res)=>{
     try {
-        res.render('goodselection')
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-const forgetLoad =(async(req, res)=> {
-    try {
-        res.render('forget-password')
+        res.render('forgetpassword')
     } catch (error) {
         console.log(error)
         
     }
 });
 
-const forgetPasswordVerify = (async(req, res)=> {
+const forgetPasswordVerification = (async(req, res)=> {
     try {
         const email = req.body.email;
         const clientData = await Client.findOne({email:email})
 
         if(clientData){
-            const randomstring= randomstring.generate();
+            var randomstring=  rand.generate();
 
             await Client.updateOne({email:email}, {$set :{token:randomstring}});
             sendResetPasswordMail(clientData.name, clientData.email, randomstring);
-            res.render('forget-password', {message:"please check your mail to reset your password"})
+            res.render('forgetpassword', {message:"please check your mail to reset your password"});
+
+            logger.customerLogger.log('info', 'successfully got list')
 
         } else {
-            res.render('forget-password', {message:"User's email is incorrect"})
+            res.render('forgetpassword', {message:"User's email is incorrect"})
+            
+
+            logger.customerLogger.log('error', 'error occured')
         }
+       
+        
+    } catch (error) {
+        console.log(error)
+        logger.customerLogger.log('error', 'error occured')
+        
+    }
+})
+
+const goodselection = async(req, res) => {
+    try {
+        const email= req.body.email;
+        res.render('goodselection', { email:email})
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+const availablegoods = async(req, res) => {
+    try {
+        res.render('availablegoods')
     } catch (error) {
         console.log(error)
         
     }
-});
+}
 
-const resetPasswordLoad = (async(req, res)=> {
+
+
+const Loadresetpassword = (async(req, res)=> {
     try {
         const token = req.query.token;
         const tokenData = await Client.findOne({token:token})
         
         
         if(tokenData){
-            res.render('reset-password',{user_id:tokenData._id})
+            res.render('resetpassword',{user_id:tokenData._id})
         }
 
         else{
@@ -255,11 +346,16 @@ const resetPassword = (async(req, res) => {
 
 module.exports= {
     loadlogin,
+    signup,
+    profile,
+    goodDetails,
+    details,
     verifyLogin,
     logout,
     goodselection,
-    forgetLoad,
-    forgetPasswordVerify,
-    resetPasswordLoad,
+    availablegoods,
+    forgetpass,
+    forgetPasswordVerification,
+    Loadresetpassword,
     resetPassword
 }

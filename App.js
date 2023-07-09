@@ -2,7 +2,21 @@ const connectdb = require("./dbconnection/dbconnect");
 connectdb();
 const express = require("express")
 const app = express();
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+
+
+
+// const winston = require("winston");
+
+// const logger = winston.createLogger({
+//     level: 'info',
+//     format: winston.format.json(),
+//     defaultMeta: {service:'user-service'},
+//     transports:[
+
+//         new winston.tra
+//     ]
+// })
 
 app.set('view engine', 'ejs');
 const client_route = require("./routes/clientroute");
