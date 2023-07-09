@@ -129,11 +129,13 @@ const sendResetPasswordMail = async(name, email, token) => {
             else {
                 console.log('email has been sent:-', info.response);
             }
+            logger.customerLogger.log('info', 'successfully got list')
 
         })
     } catch (error) {
         console.log(error)
-        
+
+        logger.customerLogger.log('error', 'sorry, an error occurred')
     }
 
 }
@@ -337,9 +339,13 @@ const resetPassword = (async(req, res) => {
         const securePassword = await adminController.securePassword(password);
         Client.findByIdAndUpdate({_Id:user_id}, {$set:{password:securePassword, token: ""}})
 
+        logger.customerLogger.log('info', 'successfully got list')
+
         res.redirect('/login')
     } catch (err) {
         console.log(error)
+
+        logger.customerLogger.log('error', 'error occured')
         
     }
 });
