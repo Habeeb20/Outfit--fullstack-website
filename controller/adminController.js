@@ -16,15 +16,26 @@ const securePassword =(async(password) => {
 
 });
 
-const profile =(async(req, res) => {
+const profile = (async(req, res) => {
+    
+    const detaildata = await Good.find();
+    if(detaildata.length)
+    console.log(detaildata)
     try {
-        res.render('profile')
+        res.render('profile', {  
+            _id: req.params.id,
+            
+            title:req.body.title,
+            kinds:req.body.kinds,
+            color:req.body.color,
+            detaildata: detaildata,
+            message:"goods added to cart successfully",
+         })
     } catch (error) {
         console.log(error)
         
     }
-})
-
+});
 
 
 
@@ -44,24 +55,54 @@ const AddPost  = (async(req, res) => {
     }
 });
 const deletePost = (async(req, res) => {
-    try {
-        await Good.deleteOne({_id:req.params.id})
-    } catch (error) {
+   
+        try {
+            let id = req.params.id;
+            const delet = await Good.findByIdAndRemove(id.trim());
+
+            if(delet){
+                try {
+                    res.redirect('/profile')
+                    console.log("successful")
+                    
+                } catch (error) {
+                    console.log(error)
+                    
+                }
+            }
+                
+         
+       
+        
+        } catch (error) {
         console.log(error)
         
-    }
+        }
+
+    
+
+
 });
 
 const geteditpost = (async(req,res) => {
     try {
-        const admindata = await Good.findById({_id:req.params.id});
-        if (admindata) {
-            res.render('editpost',{admin:admindata});
-            
-        } else {
-            console.log("not properly set")
-            
+        let id = req.params.id;
+        const admindata = await Good.findById(id);
+        if(admindata){
+            try {
+                res.render('editpost', {
+                    _id:req.params.id,
+
+                    detaildata:admindata
+                })
+                
+            } catch (error) {
+                console.log(error)
+                
+            }
         }
+    
+           
         
         
     } catch (error) {
@@ -72,14 +113,18 @@ const geteditpost = (async(req,res) => {
 
 
 const loadedit =(async(req, res)=> {
-    try {
-        const editdetails = await Good.findByIdAndUpdate({_id:req.params.id}, {
-            $set:{
-                color:req.body.color,
-            }
-        });
+    let id = req.params.id;
+    const editdetails = await Good.findByIdAndUpdate(id, {
+        title:req.body.title,
+        kinds:req.body.kinds,
+        color:req.body.color,
+    });
+    try { 
+        const detaildata =  await editdetails.save()
 
-        if (editdetails) {
+        if (detaildata) {
+          
+            res.redirect("/profile")
             console.log("successful")
             
         } else {
@@ -90,7 +135,7 @@ const loadedit =(async(req, res)=> {
         console.log(error)
         
     }
-})
+});
 
 
 

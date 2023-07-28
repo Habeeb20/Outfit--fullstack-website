@@ -42,9 +42,42 @@ const signup = (async(req, res)=>{
     }
 });
 
-const profile = (async(req, res) => {
+const verifysignup = (async(req, res) => {
     try {
-        res.render('profile', {})
+        const email = req.body.email;
+        const password = await securePassword (req.body.password);
+
+        const newclient = new Client({
+    
+            email:email,
+            password:password,
+            
+        });
+
+        const clientDat = await newclient.save()
+        if(clientDat){
+            res.render('goodselection',{email:email})
+        }
+    } catch (error) {
+        
+    }
+})
+
+const profile = (async(req, res) => {
+    let id = req.params.id;
+    const detaildata = await Goods.find();
+    if(detaildata.length)
+    console.log(detaildata)
+    try {
+        res.render('profile', {  
+            _id: req.params.id,
+            
+            title:req.body.title,
+            kinds:req.body.kinds,
+            color:req.body.color,
+            detaildata: detaildata,
+            message:"goods added to cart successfully",
+         })
     } catch (error) {
         console.log(error)
         
@@ -74,7 +107,9 @@ const details = (async(req, res)=> {
 
         const detaildata = await detailsgood.save();
         if (detaildata) {
+            const detaildata = await Goods.find()
             res.render('profile', {
+                _id: req.params.id,
                 title:req.body.title,
                 kinds:req.body.kinds,
                 color:req.body.color,
@@ -104,25 +139,29 @@ const sendResetPasswordMail = async(name, email, token) => {
 
 
     try {
-        const transport= nodemailer.createTransport({
-            host:'smtp.gmail.com',
-            port:587,
+        const transporter= nodemailer.createTransport({
+            host:'smtp.forwardemail.net',
+            port:465,
             secure:false,
             requireTLS:true,
             auth:{
-                user:config.emailUser,
-                pass:config.emailPassword
+                user:process.env.EMAIL_USER,
+                pass:process.env.EMAIL_PASSWORD
             }
         }) ;
-        
-        const mailOptions = {
-            from:config.emailUser,
-            to:email, 
-            subject:'Reset password',
-            html: '<p>Hi, '+name+', please click here to <a href="http://127.0.0.1:3000/reset-password?token= ' +token+'">Reset</a>Your password'
-        }
 
-        transport.sendMail(mailOptions, function(error, info){
+        const mailOptions = await transporter.sendMail ({
+            from:'cineflix support<support@cineflix.com>',
+            to:email,
+            subject:'reset password',
+            html: '<p>Hi, '+name+', please click here to <a href="http://127.0.0.1:3000/reset-password?token= ' +token+'">Reset</a>Your password'
+
+
+        })
+        console.log("message sent:%s", info.messageId);
+     
+
+       await transporter.sendMail(mailOptions, function(error, info){
             if(error){
                 console.log(error);
             }
@@ -175,23 +214,11 @@ const verifyLogin = (async(req, res) =>{
             }
             
         } else {
-            // console.log("err")
-            // res.redirect('/login')
+           
             if (!clientData) {
-                const email = req.body.email;
-                const  password = await securePassword (req.body.password);
+                console.log("no email is found")
+                res.render("signup")
 
-                const newclient = new Client({
-            
-                    email:email,
-                    password:password,
-                    
-                });
-        
-                const clientDat = await newclient.save()
-                if(clientDat){
-                    res.render('goodselection',{email:email})
-                }
                 
             } else {
                 console.log(err2)
@@ -207,40 +234,6 @@ const verifyLogin = (async(req, res) =>{
     }
 });
 
-
-        // if(clientData){
-        //     console.log(clientData)
-        //     const passwordMatch = await bcrypt.compare(password, clientData.password)
-
-        //     if(passwordMatch){
-        //         req.session.user_id = clientData._id;
-        //         req.session.is_admin = clientData.is_admin
-
-        //         if(clientData.is_admin = 1){
-        //             res.redirect('/dashboard')
-        //         }else {
-        //             res.redirect('/login', {message: "login details does not match,create an account instead"})
-        //         }
-        //     }
-        //     else {
-        //         res.send("error")
-        //     }
-        // if(!clientData){
-
-        //     const newData = new newInfo({
-        //         email:email,
-        //         passsword:password
-        //     })
-
-        //     const Data = await newData.save()
-            
-
-        // }
-        // else{
-        //     res.redirect('login', {message: "login details does not match,create an account instead"})
-        // }
-        // }
-        
  
 const logout = (async(req, res)=> {
     try {
@@ -350,6 +343,9 @@ const resetPassword = (async(req, res) => {
     }
 });
 
+
+
+
 module.exports= {
     loadlogin,
     signup,
@@ -357,6 +353,7 @@ module.exports= {
     goodDetails,
     details,
     verifyLogin,
+    verifysignup,
     logout,
     goodselection,
     availablegoods,

@@ -17,13 +17,13 @@ adminroute.use(session({secret:config.sessionSecret,
 
 const authentication = require("../middleware/authentication")
 adminroute.set('view engine', 'ejs');
-adminroute.set('views', '/views');
+// adminroute.set('views', '/views');
 
 adminroute.use(express.static('public'));
 
 adminroute.get('/profile', authentication.isLoggedin, adminController.profile)
 adminroute.get('/editpost/:id', adminController.geteditpost);
-adminroute.post('/updatepost/:id', adminController.loadedit);
-adminroute.post('/deletepost', adminController.deletePost)
+adminroute.post('/editpost/:id', adminController.loadedit);
+adminroute.get('/deletepost/:id', adminController.deletePost)
 
 module.exports= adminroute

@@ -149,7 +149,7 @@
          font-weight: 500;
          text-align: center;
          letter-spacing: 0.1em;
-         margin-top: 3px;
+         margin-top: -2%;
 
      }
 
@@ -189,7 +189,7 @@
      .inputbox input:focus~span 
      {
          color:#45f3ff;
-         transform: translateX(10px) translateY(-30px);
+         transform: translateX(10px) translateY(-3px);
          font-size: 0.75em;
          width: 100px;
          visibility: hidden;
@@ -264,23 +264,16 @@
 
 <body>
 
-    <% 
-    if(typeof message !== 'undefined'){
-        %>
-        <p style="color: red"><%= message %></p>
-
-        <%
-} %>
-
+  
     <div class="container">
         <span class="text1">Welcome to</span>
-        <span class="text2">Habeeb Designs</span>
+        <span class="text2">E&T Outfit</span>
 
     </div>
     <form action="" method="POST">
         <div class="box">
             <div class="form">
-                <h2>Sign in</h2>
+                <h2>Login</h2>
                 <div class="inputbox">
                     <input type="text" name="email" required="required">
                     <span>email</span>
@@ -296,6 +289,15 @@
                     <a href="/signup">signup</a>
                 </div>
                 <a href="" style="text-decoration: none;"><input type='submit' value="Login"></a>
+
+                <% 
+                if(typeof message !== 'undefined'){
+                    %>
+                    <p style="color: red"><%= message %></p>
+            
+                    <%
+                } %>
+            
             </div>
     
         </div>

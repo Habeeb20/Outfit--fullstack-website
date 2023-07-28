@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dignity</title>
+</head>
+
+<style>
+
+         
+        
+    
+
+    body {
+        background-color: gainsboro;
+    }
+        .All2  {
+            display: inline-flex;
+            justify-content: space-between;
+            margin-left: 350px;
+        }
+
+        .All2 button {
+            text-align: center;
+            margin-top: 0px;
+            padding-top: 0px;
+            margin-left: 90px;
+            
+        }
+        
+        .All2 img {
+            width: 388px;
+            height: 300px;
+            padding: 15px ;
+        }
+
+        .first1 h4 {
+            margin-top: 0px;
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        .fir button {
+            background-color: steelblue;
+            width: 100px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .sec button{
+            background-color: goldenrod;
+            width: 100px;
+            color: white;
+            border: none;
+            padding-left: 1px;
+            margin-left: 3px;
+            border-radius: 5px;
+        }
+
+        h5 {
+            text-align: left;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        h6 {
+            margin-bottom: 1px;
+        }
+        .nak {
+            color:blue;
+        }
+        .invi {
+            visibility: hidden;
+        }
+
+        .sectionA {
+            border: 2px solid orangered;
+            width: 299px;
+            height: 75px;
+            border-radius: 5px;
+            margin-top: 1px;
+            
+        }
+        .redback {
+            background-color: orangered;
+            height: 30px;
+            color:white;
+            margin-top: 0%;
+            padding-top: 1px; 
+            margin-left: 0;  
+        }
+
+        .redback h6 {
+            margin-top: 5px;
+            margin-left: 4px;
+        }
+
+        .sectionA h3 {
+            
+            margin-top: 2px;
+            margin-left: 10px;
+            margin-bottom: 1px;
+        }
+
+        .sectionA h6 {
+            margin-top: 1px;
+            margin-left: 9px;
+        }
+
+        hr {
+            background-color: goldenrod;
+            height:5px;
+            border-radius: 14px;
+            width: 220px;
+            margin-top: 10px;
+            float: right;
+            margin-right: 1px;
+            margin-top: 5px;
+       
+        }
+
+        .line {
+            margin-top: 1px;
+            
+        }
+
+        #hey {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .promotions h3{
+            font-family: 'Courier New', Courier, monospace;
+            background-color: darkgray;
+            width: 350px;
+            margin-top: 20px;
+            margin-left: 0px;
+            padding-left: 55px;
+            font-weight: lighter;
+            color:lightslategray;
+        
+        }
+
+        ul li {
+            font-size: small;
+        }
+
+        li {
+            padding: 10px;
+            color: black;
+        }
+
+        .promotions1 h3{
+            font-family: 'Courier New', Courier, monospace;
+            background-color: darkgray;
+            width: 350px;
+            margin-top: 20px;
+            margin-left: 0px;
+            padding-left: 55px;
+            font-weight: lighter;
+            color:lightslategray;
+            margin-bottom: 5px;
+        
+        }
+
+        #promot {
+            float: left;
+            font-family: monospace;
+            color: orange;
+            margin-bottom: 5px;
+        }
+
+        #down {
+            padding-top: 0px;
+            float: left;
+        }
+
+        .black {
+            color: black;
+            float: left;
+            margin-bottom: 2px;
+        }
+
+        select {
+            width: 250px;
+            float: left;
+            height: 35px;
+            border-radius: 10px;
+            border: black;
+        }
+
+        .list {
+            float: left;
+            margin-bottom: 2px;
+        }
+
+        .list1 {
+            float: left;
+            margin-bottom: 2px;
+        }
+
+        .list1a {
+            float:left;
+            margin-bottom: 2px;
+        }
+
+        .list2 {
+            float: left;
+            margin-bottom: 2px;
+        }
+
+        .list3 {
+            float: left;
+            
+        }
+
+        .promotions2 h4{
+            font-family: 'Courier New', Courier, monospace;
+            background-color: darkgray;
+            width: 350px;
+            margin-top: 3px;
+            margin-left: 350px;
+            padding-left: 55px;
+            font-weight: lighter;
+            color:lightslategray;
+            margin-bottom: 5px;
+        
+        }
+
+        .pix {
+            padding-top: 10px;
+            display: inline-flex;
+            justify-content: space-around;
+            margin-left: 250px;
+        }
+
+        
+
+        
+        .pix img {
+            width: 160px;
+            height: 200px;
+            padding-top: 4px;
+            padding: 1px ;
+            margin-left: 100px;
+            
+        }
+
+        .pix button {
+             margin-left: 160px;
+        }
+
+        .btn {
+            background-color: greenyellow;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            width: 150px;
+            height: 30px;
+        }
+
+
+        @media only screen and (max-width:850px){
+            .All2 {
+                margin-left: 17px;
+            }
+
+            .pix {
+                margin-left: 1px;
+            }
+
+            .promotions2 {
+                margin-left: 2px;
+            }
+
+            .promotions2 h4 {
+                margin-left: 17px;
+            }
+
+
+            
+        }
+
+
+
+
+
+    
+
+
+
+</style>
+<body>
+    
+    <div class="All2">
+        <div class="first1">
+            <img src="iphone 3.png">
+            <h4>apple wirst watch</h4>
+            <a class="fir"><button>official store</button></a>
+            <a class="sec"><button>Free delivery</button></a>
+            <h5>size 40,colors: brown and black.package: slide <br> palm slippers. dressing compatibilty:
+            with native wears<br> and casual wears</h5>
+            <h6>Brand:<span class="nak">Bottega Veneta</span> </h6>
+            <div class="sectionA">
+                <div class="redback">
+                    <h6>flash sales <span class="invi">Habeeb is the developer</span>Time left old: 10h : 00m</h6>
+
+                </div>
+                
+                <h3># 17,000</h3>
+                <div class="line">
+                    <h6>30 items left  <hr></h6>
+                </div>
+
+                <h6 id="hey">Delivery from Lagos - Ibadan is #2000 </h6>
+
+                <div class="promotions">
+                    <h3>PROMOTIONS</h3>
+                   
+                </div>
+                <ul>
+                    <li>You can buy airtime & data on the dignitypay app and get up to 5% cash back. Use  <br> code: MOB3</li>
+                     <li>You can enjoy cheaper shipping fees when you select a pickup station at checkout </li>
+                     <li>You can also borrow loans up to N200,000 to make everyday life easier. No collateral <br> non paperwork
+                    via DignityPay app </li>
+                </ul>
+
+                 
+            <div class="promotions1">
+                <h3>DELIVERY AND RETURNS INFO</h3>
+            </div>
+            <h4 id="promot">EXPRESS</h4>
+            <div id="down">
+                <h6>Free delivery on thousands of products in Lagos,Ibadan & Abuja</h6>
+            </div>
+            <h4 class="black" style="font-family: monospace;", >Choose Location:</h4>
+            <select>
+                <option>Oyo</option>
+                <option>Lagos</option>
+                <option>Osun</option>
+                <option>Ogun</option>
+                <option>Ondo</option>
+                <option>Abuja</option>
+                <option>Kano</option>
+                <option>Kaduna</option>
+                <option>Cross-river</option>
+                <option>Delta</option>
+                <option>Kastina</option>
+                <option>Edo</option>
+            </select>
+            
+          
+
+            <ul class="list">
+                <li>
+                    <span class="Door">Door Delivery</span>
+                    <ol style="padding-left: 1px; color: darkblue; font-weight: bolder;" >You pay on delivery</ol>
+                    <ol style="padding-left: 1px;" class="Dr">Delivery N1900</ol>
+                    <ol style="padding-left: 1px;">Ready for delivery between 28 Aug and 29 Aug when you order within next 48hrs</ol>
+                </li>
+            </ul>
+
+           
+            <ul class="list1">
+                <li>
+                    <span class="Door">Pickup Station</span>
+                    <ol style="padding-left: 1px;" class="Dr">Delivery N900</ol>
+                    <ol style="padding-left: 1px;">Ready for pickup between 28 Aug and 29 Aug when you order within next 48hrs</ol>
+                </li>
+            </ul>
+
+            <ul class="list1a">
+                <li>
+                    <span class="Door">Pickup at the nearest Station</span>
+                    <ol style="padding-left: 1px;" class="Dr">Delivery N900</ol>
+                    <ol style="padding-left: 1px;">A call will be placed to know the nearest city of the state of choice selected above</ol>
+                    <ol style="padding-left: 1px;">Valid phone numbers should be fill in as that will decide whether your goods will be delivered or not because
+                    if none of the phone numbers is reachable after 5 trial, the goods won't be delivered </ol>
+                </li>
+            </ul>
+     
+            <ul class="list2">
+                <li>
+                    <span class="Door">Return Policy</span>
+                    <ol style="padding-left: 1px;">Free return within 15days for Official Store items and 7 days for othereligible items</ol>
+                </li>
+            </ul>
+
+            
+           
+            </div>
+            <form action="" method="post">
+               <div>
+               
+                <select name="color">
+                   
+                    <option>choose a color</option>
+                    <option>white</option>
+                    <option>black</option>
+                    <option>blue</option>
+                    <option>red</option>
+                   
+                </select>
+                
+                <div  style="margin-top: 67%;">
+                    <input type="text" name="title" placeholder="name of product e.g Gucci" required>
+                    <input type="text" name="kinds" placeholder="type of product e.g footwear" required>
+                 
+                
+                </div>
+               </div>
+              
+                 <a  href="/profile"> <button class="btn">place your order now</button></a>
+            </form>
+
+           
+             
+        </div>    
+        </div>
+       
+ 
+
+      
+    </div>
+</body>
+</html>

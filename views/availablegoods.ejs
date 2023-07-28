@@ -1,15 +1,724 @@
-<div class="container">
-    <div class="row">
-        <div class="thumbnail">
-            <div class="one pic">
-                <img src="3.jpg" alt="">
-                <a href="/login"><input type="submit" value="Add cart" ></a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+        integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<style>
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body {
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .roww1 {
+        display: inline-flex;
+        padding: 5px;
+
+    }
+
+    .roww1 .product1 {
+        text-align: center;
+        padding: 15px;
+        cursor: pointer;
+        margin-bottom: 2rem;
+
+    }
+
+    .product1 img {
+        transition: 0.3s;
+        width: 100%;
+        height: 75%;
+
+
+    }
+
+    .product1:hover img {
+        opacity: 0.7;
+    }
+
+    .product1 .buy-btn {
+        background-color: orange;
+        border: none;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: 0.3s all;
+    }
+
+    .product1:hover .buy-btn {
+
+        transform: translateY(0);
+        opacity: 1;
+
+    }
+
+    .row {
+        margin-left: 5%;
+        padding: 3%;
+    }
+
+
+
+
+
+    #banner {
+        background-image: url("banner.jpg");
+        width: 100%;
+        height: 60vh;
+        background-size: cover;
+        background-position: top 70px center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        padding-top: 1%;
+
+    }
+
+    #banner containerr h4 {
+        color: #d8d8d8;
+
+    }
+
+    #banner containerr h1 {
+        color: #fff;
+    }
+
+    #banner button .text-uppercase {
+        background-color: #fb774b;
+    }
+
+
+
+
+    #banner1 {
+        background-image: url("cart.jpg");
+        width: 100%;
+        height: 60vh;
+        background-size: cover;
+        background-position: top 70px center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+    }
+
+    #banner h4 {
+        color: #d8d8d8;
+
+    }
+
+    #banner h1 {
+        color: #fff;
+    }
+
+    #banner button {
+        background-color: #fb774b;
+    }
+
+
+    .roww1 {
+        display: inline-flex;
+        padding: 5px;
+
+    }
+
+    #clothes {
+        padding: 16px;
+    }
+
+    .contain1 hr {
+        background-color: #fb774b;
+    }
+
+    .contain1 {
+        text-align: center;
+        align-items: center;
+        top: 0;
+        margin-top: 5px;
+
+        padding-bottom: 5px;
+    }
+
+
+    .roww1 {
+        display: inline-flex;
+        padding: 5px;
+
+    }
+
+    .roww1 .product1 {
+        text-align: center;
+        padding: 15px;
+        cursor: pointer;
+        margin-bottom: 2rem;
+
+    }
+
+    .product1 img {
+        transition: 0.3s;
+        width: 100%;
+        height: 55%;
+
+
+    }
+
+    .product1:hover img {
+        opacity: 0.7;
+    }
+
+    .product1 .buy-btn {
+        background-color: #fb774b;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: 0.3s all;
+    }
+
+    .product1:hover .buy-btn {
+
+        transform: translateY(0);
+        opacity: 1;
+
+    }
+
+    .footer-one {
+        padding: 65px;
+    }
+
+    .footer-one h5 {
+        padding-bottom: 10px;
+    }
+
+    .footer-one li {
+        list-style: none;
+        color: #999;
+        font-size: 0.8rem;
+    }
+
+    .footer-one li:hover {
+        color: #d8d8d8;
+    }
+
+    footer p {
+        color: #999;
+    }
+
+    .row11 {
+
+        padding: 5px;
+    }
+
+    .row11 img {
+        padding: 15px;
+        width: 30%;
+    }
+
+    footer {
+        background-color: #222222;
+    }
+
+    footer h5 {
+        color: #d8d8d8;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+
+    .row12 img {
+        margin-left: 10%;
+    }
+
+    .row12 p {
+        text-align: center;
+
+    }
+
+    section button {
+        background-color: orange;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container bg-dark">
+            <a href="/" class="navbar-brand"><i class="fas fa-code me-2"></i>E&T Outfit</a>
+            <button class="navbar-toggler" data-bs-target="any-nav" data-bs-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="my-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>About</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login"><i class="fas fa-envelope me-1"></i>Profile</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login"><i class="fas fa-globe me-1"></i>Login</a>
+                    </li>
+
+
+
+
+
+
+                </ul>
+
             </div>
 
-            <div class="one pic">
-                <img src="3.jpg" alt="">
-                <a href="/login"><input type="submit" value="Add cart" ></a>
+
+        </div>
+
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-6 col-xs-3 ">
+
+               
+
+                <div class="roww1">
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 11.png">
+                            <h5 class="p-name">Naked Wolfe</h5>
+                            <h4 class="p-price">#22,000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 14.png">
+                            <h5 class="p-name">Loius Vuttion</h5>
+                            <h4 class="p-price">#20,000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 15.png">
+                            <h5 class="p-name">Loius Vuttion</h5>
+                            <h4 class="p-price"># 20,000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 16.png">
+                            <h5 class="p-name">Bottega Venta</h5>
+                            <h4 class="p-price">#22,000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 19.png">
+                            <h5 class="p-name">Adidas</h5>
+                            <h4 class="p-price">$400.00</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="thumbnail">
+
+
+                        <div class="product1">
+                            <img src="pic 31.png">
+                            <h5 class="p-name">sanuti</h5>
+                            <h4 class="p-price">#25000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="roww1">
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 32.png">
+                            <h5 class="p-name">Sanuti</h5>
+                            <h4 class="p-price">#25000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 17.png">
+                            <h5 class="p-name">Nike air</h5>
+                            <h4 class="p-price">#35000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="dignew.png">
+                            <h5 class="p-name">Adidas</h5>
+                            <h4 class="p-price">#35,000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="dignity.png">
+                            <h5 class="p-name">Loius Vuttion</h5>
+                            <h4 class="p-price">#23,000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="thumbnail">
+                        <div class="product1">
+                            <img src="pic 22.png">
+                            <h5 class="p-name">Nike air</h5>
+                            <h4 class="p-price">#3,7000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button></a>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="thumbnail">
+
+
+                        <div class="product1">
+                            <img src="pic 23.png">
+                            <h5 class="p-name">Nike Jordan</h5>
+                            <h4 class="p-price">#37000</h4>
+                            <a href="/login"><button class="buy-btn">Add cart </button>></a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
             </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+
+
+    <section id="banner">
+        <div class="container">
+            <h4 style="color: aliceblue;">MID SEASON'S SALE</h4>
+            <h1 style="color: aliceblue;">Autumn collection <br>UP TO 20% OFF</h1>
+            <button style="background-color: orange; border:none" class="text-uppercase">Shop Now</button>
+        </div>
+
+    </section>
+
+
+    <div class="container">
+        <div class="row">
+
+
+            <section id="watches">
+                <div class="contain1">
+                    <h3>watches</h3>
+                    <hr>
+                    <p>Here you can check out our new products with fair price on rymo</p>
+
+
+                </div>
+                <div class="roww1">
+                    <div class="product1">
+                        <img src="chain 2.png">
+                        <h5 class="p-name">Rolex</h5>
+                        <h4 class="p-price">$32.00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="iphone 3.png">
+                        <h5 class="p-name">Gucci</h5>
+                        <h4 class="p-price">$10.00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="chain 7.png">
+                        <h5 class="p-name">Gucci</h5>
+                        <h4 class="p-price">$40.00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="chain 7.png">
+                        <h5 class="p-name">Armani</h5>
+                        <h4 class="p-price">$30.00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <section id="watches">
+                <div class="contain1">
+                    <h3>wears</h3>
+                    <hr>
+                    <p>Here you can check out our new products with fair price on rymo</p>
+
+
+                </div>
+                <div class="roww1">
+                    <div class="product1">
+                        <img src="cloth 4 (6).jpg">
+                        <h5 class="p-name">diesal</h5>
+                        <h4 class="p-price">#14000</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="cloth 56.jpg">
+                        <h5 class="p-name">Ralph polo</h5>
+                        <h4 class="p-price">#10000</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="cloth 31.jpg">
+                        <h5 class="p-name">Burberry</h5>
+                        <h4 class="p-price">#10,000</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="cloth 4 (43).jpg">
+                        <h5 class="p-name">Rhude</h5>
+                        <h4 class="p-price">#12000</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                </div>
+
+            </section>
         </div>
     </div>
-</div>
+
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <section id="banner1">
+        <div class="container">
+            <h4 style="color:aliceblue">MID SEASON'S SALE</h4>
+            <h1 style="color:aliceblue">Autumn collection <br>UP TO <span style="color: black;">20% OFF</span> </h1>
+            <button style="background-color: orange;" class="text-uppercase">Shop Now</button>
+        </div>
+
+    </section>
+
+
+    <div class="container">
+        <div class="row">
+
+            <section id="shoes">
+                <div class="contain1">
+                    <h3>shoes</h3>
+                    <hr>
+                    <p>Here you can check out our new products with fair price on rymo</p>
+
+                </div>
+                <div class="roww1">
+                    <div class="product1">
+                        <img src="cloth 4 (44).jpg">
+                        <h5 class="p-name">Versace</h5>
+                        <h4 class="p-price">$352.00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="cloth 4 (37).jpg">
+                        <h5 class="p-name">Nike</h5>
+                        <h4 class="p-price">$100.00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="cloth 4 (36).jpg">
+                        <h5 class="p-name">fendi</h5>
+                        <h4 class="p-price">#12000</h4>00</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                    <div class="product1">
+                        <img src="cloth 4 (47).jpg">
+                        <h5 class="p-name">Rhude</h5>
+                        <h4 class="p-price">#10,000</h4>
+                        <a href="/login"><button class="buy-btn">Add cart </button></a>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer class="foot">
+        <div class="row">
+
+
+            <div style="float: right;" class="footer-one">
+                <h5>featured</h5>
+                <ul>
+                    <li>men</li>
+                    <li>women</li>
+                    <li>boys</li>
+                    <li>girls</li>
+                    <li>shoes</li>
+                    <li>clothes</li>
+                    <li>new arrival</li>
+
+                </ul>
+            </div>
+
+
+
+        </div>
+
+        <div class="copyright">
+            <div class="row12">
+                <img src="payment.png" alt="">
+                <p>Habeeb @ 2023. All Rights are reserved</p>
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+</html>
+
+
